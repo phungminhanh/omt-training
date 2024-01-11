@@ -1,5 +1,5 @@
 .header-item{
-    background-color: blueviolet;
+    background-color:aqua;
     height: 30px;
     width: 30px;
     display: inline-block;
@@ -204,7 +204,7 @@
   background-color: #ECECEC;
 }
 .sitenavigation li a.nav-selected {
-  background-color: #777;
+  background-color: #ffffff;
   color: #000;
 }
 .sitenavigation li a:hover {
