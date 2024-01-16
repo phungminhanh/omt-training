@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Responsive Navbar with Submenu</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400,300,700' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css'><link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .header-item{
+    background-color:aqua;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-right: 40px; 
+    
+    
+}
+.div-header-left
+{
+    margin-left: 40px;
+}
+.top-header
+{
+    margin-left: 40px;
+}
+#datetime {
+    font-size: 20px;
+}
+#weather-icon {
+    width: 20px;  
+    height: 20px;
+    filter: invert(1); 
+  }
+  .weather{
+    display: inline-block;
+  }
+  header
+  {
+    background-color: #fcfcfc;
+    color: rgb(200, 200, 200);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .div-header-left
+  {
+   display: flex;
+   align-items: center;
+  }
+        .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .content {
+    padding-top: 60px;
+  }
+  nav.sticky {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 20px; }
+body {
+    padding-top: 56px; }
+
+header {
+    background-color: #ffffff;
+    color: rgb(16, 12, 12);
+    text-align: center;
+    padding: 10px;
+}
+
+nav {
+    background-color: #f8f9fa;
+    
+}
+
+.content-box {
+    background-color: #e9ecef;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+}
+
+.main-section {
+    padding: 20px;
+}
+
+.side-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#citySelector {
+            display: inline-block;
+            position: relative;
+        }
+
+        #citySelector:hover #cityList {
+            display: block;
+        }
+
+        #cityList {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f1f1f1;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            min-width: 160px;
+        }
+
+        #cityList a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        #cityList a:hover {
+            background-color: #ddd;
+        }
+
+        #weatherInfo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #weatherInfo img {
+            width: 50px;
+            height: 50px;
+        }
+        header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    #searchBar {
+      display: flex;
+      align-items: center;
+    }
+
+    #searchInput {
+      padding: 5px;
+      margin-right: 10px;
+    }
+
+    #searchButton {
+      padding: 5px;
+    }
+
+    #notificationIcon,
+    #loginIcon {
+      font-size: 20px;
+      margin-right: 10px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #weatherInfo {
+      display: flex;
+      align-items: center;
+    }
+
+    #citySelector {
+      margin-right: 10px;
+    }
+
+    #selectedCity {
+      padding: 5px;
+    }
+
+    #dateTime,
+    #temperature,
+    #temperature-icon img {
+      margin-left: 10px;
+    }
+    .header-section
+    {
+
+        display: flex;
+        align-items: center;
+    }
+    #notificationIcon:hover
+    {
+      font-size: 150%;
+    }
+    #notificationIcon:active
+    {
+        color: red;
+    }
+    #loginIcon:hover
+    {
+       color: green;
+    }
+    #loginIcon:active
+    {
+        font-size: 150%;
+    }
+    
+    #citySelector
+    {
+        display: flex;
+        align-items: center;
+    }
+    .ma
+    {
+      font-size: 300%;  
+    }
+    </style>
+</head>
+<body>
+    <header class="row ">
+        <div class="col-lg-4 ma">
+            <H1>TiMENEWROMANS</H1>
+        </div>
+     <div class=" right col-lg-6" >
+        <div id="weatherInfo ">
+            <div id="citySelector">
+                <select id="selectedCity" class="selectedCity" onchange="changeCity(this.value)">
+                    <option value="Ha Noi">Ha Noi</option>
+                    <option value="Ho Chi Minh">Ho Chi Minh</option>
+                    <option value="My location" >Current location</option>
+                   
+                </select>
+                <span id="currentcity"></span>
+                <span id="dateTime"></span>
+                <span id="temperature"></span>
+                <span id="temperature-icon"><img id="weatherIcon" alt="Weather Icon" title="Mô tả thời tiết"></span>
+            </div>
+        </div> 
+        <script>
+          function onoffFunction() {
+              var button = document.getElementById("toggleButton1");
+              if (button.innerHTML === "Off") {
+                  button.innerHTML = "On";
+                  getWeatherByLocation();
+              } else {
+                  button.innerHTML = "Off";
+                  
+              }
+          }
+      </script>
+        <div class="header-section ">
+        <div id="searchBar">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+            <button id="searchButton">Tìm kiếm</button>
+          </div>
+      
+          
+          <div id="notificationIcon">
+            🔔 
+          </div>
+      
+          
+          <div id="loginIcon" onclick="togglePopup()">
+            🌐 
+          </div>
+          <div id="popup">
+            <div class="popup-content">
+              <span class="close-btn" onclick="togglePopup()">&times;</span>
+        
+              <!-- Login Form -->
+              <div id="login-form" class="active-form">
+                <h2>Login</h2>
+                <form>
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" required>
+                  <br>
+                  <label for="password">Password:</label>
+                  <input type="password" id="password" name="password" required>
+                  <br>
+                  <button type="submit">Login</button>
+                </form>
+                <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Register here.</div>
+              </div>
+        
+              <!-- Register Form -->
+              <div id="register-form" class="inactive-form">
+                <h2>Register</h2>
+                <form>
+                  <label for="newUsername">Username:</label>
+                  <input type="text" id="newUsername" name="newUsername" required>
+                  <br>
+                  <label for="newPassword">Password:</label>
+                  <input type="password" id="newPassword" name="newPassword"  onkeypress="return isNumberKey(event)" required>
+                  <br>
+                  <button type="submit">Register</button>
+                </form>
+                <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login here.</div>
+              </div>
+        
+            </div>
+          </div>
+            
+          <script>
+            function togglePopup() {
+              var popup = document.getElementById("popup");
+              popup.style.display = (popup.style.display === "none") ? "flex" : "none";
+            }
+        
+            function toggleForms() {
+              var loginForm = document.getElementById("login-form");
+              var registerForm = document.getElementById("register-form");
+        
+              
+              loginForm.classList.toggle("active-form");
+              loginForm.classList.toggle("inactive-form");
+        
+              registerForm.classList.toggle("active-form");
+              registerForm.classList.toggle("inactive-form");
+            }
+          </script>
+          <script>
+            function isNumberKey(event) {
+              var charCode = (event.which) ? event.which : event.keyCode;
+        
+              if (charCode >= 48 && charCode <= 57) {
+                return true;
+              } else {
+                alert("You pressed a key inside the input field");
+                return false;
+              }
+            }
+          </script>
+        
+        </div>
+        </div>
+        
+    </header>
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">World</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Politics</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Business
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Submenu 1</a></li>
+                            <li><a class="dropdown-item" href="#">Submenu 2</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Technology</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container main-section">
+    <div class="row">
+        
+        <div class="col-md-8">
+            
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="content-box">
+                            <h2>Top News</h2>
+                            <p>Content for Top News</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="content-box">
+                            <h2>Featured Story 1</h2>
+                            <p>Content for Featured Story 1</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="content-box">
+                            <h2>Featured Story 2</h2>
+                            <p>Content for Featured Story 2</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content-box">
+                        <h3>Article Title</h3>
+                        <p>Article Summary Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                        <button class="btn btn-primary">Read More</button></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-box">Featured Story 2</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-box">Featured Story 2</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-box">Featured Story 2</div>
+                </div>
+            </div>
+            <div class="content-box">Latest News</div>
+           </div>
+           <div class="col-md-4">
+            <div class="side-section">
+                <h2>Opinions</h2>
+                <div class="content-box">Opinion 1</div>
+                <div class="content-box">Opinion 2</div>
+            </div>
+        
+        </div>
+       
+                    
+                    <!-- Carousel Slide 2 -->
+                    <div id="myCarousel2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="content-box">
+                                    <h2>Another Slide</h2>
+                                    <p>Content for another slide</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="content-box">
+                                    <h2>Slide 2</h2>
+                                    <p>Content for Slide 2</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="content-box">
+                                    <h2>Slide 3</h2>
+                                    <p>Content for Slide 3</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                   
+                    
+                
+</div>
+<script>
+    window.onscroll = function() {myFunction()};
+    
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+    
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+    </script>
+    <script>async function getWeatherByLocation() {
+        try {
+          
+          navigator.geolocation.getCurrentPosition(async (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+      
+           
+            const apiKey = '9ffbc24db6da404118e93cdc0a9db285'; 
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`);
+            const data = await response.json();
+      
+            const cityName = data.name;
+            const temperature = Math.round(data.main.temp - 273.15); 
+      
+            document.getElementById("city").innerHTML = ` ${cityName}`;
+            document.getElementById("temperature").innerHTML = `${temperature}°C`;
+            document.getElementById("weather-icon").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+      
+         
+            updateDateTime();
+          });
+        } catch (error) {
+          console.error("Error fetching weather data:", error);
+          document.getElementById("weather").innerHTML = "Unable to fetch weather data";
+        }
+      }
+      
+    
+      function updateDateTime() {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString();
+        document.getElementById("date").innerHTML = `${formattedDate}`;
+      }
+      
+      
+      getWeatherByLocation();</script>
+      <script>
+        document.getElementById('notificationIcon').onclick = function(){
+	    swal("Good job!", "You clicked the button!", "success");
+};
+
+      </script>
+<!-- Bootstrap JS and Popper.js (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
