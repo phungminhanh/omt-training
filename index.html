@@ -8,218 +8,10 @@
     <link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400,300,700' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css'><link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .header-item{
-    background-color:aqua;
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    margin-right: 40px; 
-    
-    
-}
-.div-header-left
-{
-    margin-left: 40px;
-}
-.top-header
-{
-    margin-left: 40px;
-}
-#datetime {
-    font-size: 20px;
-}
-#weather-icon {
-    width: 20px;  
-    height: 20px;
-    filter: invert(1); 
-  }
-  .weather{
-    display: inline-block;
-  }
-  header
-  {
-    background-color: #fcfcfc;
-    color: rgb(200, 200, 200);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .div-header-left
-  {
-   display: flex;
-   align-items: center;
-  }
-        .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-  .sticky + .content {
-    padding-top: 60px;
-  }
-  nav.sticky {
-    background-color: #f8f9fa;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    margin-bottom: 20px; }
-body {
-    padding-top: 56px; }
-
-header {
-    background-color: #ffffff;
-    color: rgb(16, 12, 12);
-    text-align: center;
-    padding: 10px;
-}
-
-nav {
-    background-color: #f8f9fa;
-    
-}
-
-.content-box {
-    background-color: #e9ecef;
-    padding: 20px;
-    margin-bottom: 10px;
-    border: 1px solid #ced4da;
-}
-
-.main-section {
-    padding: 20px;
-}
-
-.side-section {
-    background-color: #f8f9fa;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-#citySelector {
-            display: inline-block;
-            position: relative;
-        }
-
-        #citySelector:hover #cityList {
-            display: block;
-        }
-
-        #cityList {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #f1f1f1;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            min-width: 160px;
-        }
-
-        #cityList a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        #cityList a:hover {
-            background-color: #ddd;
-        }
-
-        #weatherInfo {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #weatherInfo img {
-            width: 50px;
-            height: 50px;
-        }
-        header {
-      background-color: #333;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-    }
-
-    #searchBar {
-      display: flex;
-      align-items: center;
-    }
-
-    #searchInput {
-      padding: 5px;
-      margin-right: 10px;
-    }
-
-    #searchButton {
-      padding: 5px;
-    }
-
-    #notificationIcon,
-    #loginIcon {
-      font-size: 20px;
-      margin-right: 10px;
-      color: white;
-      cursor: pointer;
-    }
-
-    #weatherInfo {
-      display: flex;
-      align-items: center;
-    }
-
-    #citySelector {
-      margin-right: 10px;
-    }
-
-    #selectedCity {
-      padding: 5px;
-    }
-
-    #dateTime,
-    #temperature,
-    #temperature-icon img {
-      margin-left: 10px;
-    }
-    .header-section
-    {
-
-        display: flex;
-        align-items: center;
-    }
-    #notificationIcon:hover
-    {
-      font-size: 150%;
-    }
-    #notificationIcon:active
-    {
-        color: red;
-    }
-    #loginIcon:hover
-    {
-       color: green;
-    }
-    #loginIcon:active
-    {
-        font-size: 150%;
-    }
-    
-    #citySelector
-    {
-        display: flex;
-        align-items: center;
-    }
-    .ma
-    {
-      font-size: 300%;  
-    }
+       
     </style>
 </head>
 <body>
@@ -261,17 +53,17 @@ nav {
           </div>
       
           
-          <div id="notificationIcon">
-            🔔 
-          </div>
+          
+            <span  id="notificationIcon" class="material-icons">notifications</span>
+          
       
           
-          <div id="loginIcon" onclick="togglePopup()">
-            🌐 
-          </div>
+       
+            <span id="loginIcon" onclick="togglePopup()" ><i class="fas fa-user"></i></span>
+         
           <div id="popup">
             <div class="popup-content">
-              <span class="close-btn" onclick="togglePopup()">&times;</span>
+              <span class="close-btn" onclick="togglePopupX()">&times;</span>
         
               <!-- Login Form -->
               <div id="login-form" class="active-form">
@@ -283,7 +75,7 @@ nav {
                   <label for="password">Password:</label>
                   <input type="password" id="password" name="password" onkeypress="return isNumberKey(event)" required>
                   <br>
-                  <button type="submit">Login</button>
+                  <button class="button-form" type="submit">Login</button>
                 </form>
                 <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Register here.</div>
               </div>
@@ -298,7 +90,7 @@ nav {
                   <label for="newPassword">Password:</label>
                   <input type="password" id="newPassword" name="newPassword"  onkeypress="return isNumberKey(event)" required>
                   <br>
-                  <button type="submit">Register</button>
+                  <button class="button-form" submit">Register</button>
                 </form>
                 <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login here.</div>
               </div>
@@ -308,8 +100,12 @@ nav {
             
           <script>
             function togglePopup() {
-              var popup = document.getElementById("popup");
-              popup.style.display = (popup.style.display === "none") ? "flex" : "none";
+               document.getElementById("popup").style.display='flex';
+              
+            }
+            function togglePopupX() {
+               document.getElementById("popup").style.display='none';
+              
             }
         
             function toggleForms() {
